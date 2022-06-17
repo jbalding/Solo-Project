@@ -24,8 +24,12 @@ mongoose.connect(MONGO_URI, {
       return res.status(200).send(res.locals.user)
     })
 
-    app.post('login', UserController.createUser, (req, res) => {
-      
+    app.post('/login', UserController.loginUser, (req, res) => {
+      return res.status(200).redirect('/:name')
+    })
+
+    app.get('/:name', UserController.getUser, (req, res) => {
+      return res.status(200).send(res.locals.goals)
     })
     
     app.get('/', (req, res) => {
