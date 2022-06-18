@@ -2,7 +2,7 @@ const User = require('./model');
 const UserController = {};
 
 UserController.createUser = (req, res, next) => {
-  const name  = req.body
+  const { name } = req.body;
       User.create(name)
         .then( user => {
           res.locals.user = user;
@@ -13,7 +13,7 @@ UserController.createUser = (req, res, next) => {
 
 
 UserController.loginUser = (req, res) => {
-  User.findOne({name: req.body}).exec()
+  User.findOne({name: req.body})
     .then(user => {
       res.locals.user = user
       return next()

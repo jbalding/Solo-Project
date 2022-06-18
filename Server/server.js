@@ -19,6 +19,7 @@ mongoose.connect(MONGO_URI, {
     .then(() => console.log('Connected to Mongo DB.Test'))
     .catch(err => console.log(err));
 
+    app.use(express.json())
 
     app.post('/signup', UserController.createUser, (req, res) => {
       return res.status(200).send(res.locals.user)
