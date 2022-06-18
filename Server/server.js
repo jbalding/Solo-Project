@@ -1,7 +1,8 @@
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
-const apiRouter = require('./routes/api');
+const UserController = require('./controllers/userController')
+
 
 
 const app = express();
@@ -19,12 +20,36 @@ mongoose.connect(MONGO_URI, {
     .then(() => console.log('Connected to Mongo DB.Test'))
     .catch(err => console.log(err));
 
-    app.use(express.json())
+  app.use(express.json())
 
-    app.use('/api', apiRouter);
+  
+  app.post('/signup', UserController.createUser, (req, res) => {
+    return res.status(200).send(res.locals.user)
+  })
+  
+ app.post('/login', UserController.loginUser, (req, res) => {
+    return res.status(200).redirect('/:name')
+  })
+  
+ app.get('/:name', UserController.getUser, (req, res) => {
+    return res.status(200).send(res.locals.goals)
+  })
+  
+ app.get('/', (req, res) => {
+  return res.status(200).send()
+  });
 
 
-
+  app.use((err, req, res, next) => {
+    const defaultErr = {
+      log: 'Express error handler caught unknown middleware error',
+      status: 500,
+      message: { err: 'An error occurred' },
+    };
+    const errorObj = Object.assign({}, defaultErr, err);
+    console.log(errorObj.log);
+    return res.status(errorObj.status).json(errorObj.message);
+  });
 
 app.listen(PORT, () => {
     console.log(`Server listening on port: ${PORT}`);
