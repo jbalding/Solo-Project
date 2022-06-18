@@ -28,14 +28,14 @@ mongoose.connect(MONGO_URI, {
     return res.status(200).send(res.locals.user)
   })
   
+  app.patch('/:name/task', taskController.addTask, (req, res) => {
+    return res.status(200).send(res.locals.task)
+  })
+
  app.get('/:name', UserController.getUser, (req, res) => {
     return res.status(200).send(res.locals.user)
   });
 
-  app.patch('/:name/tasks', taskController.addTask, (req, res) => {
-    return res.status(200).send(res.locals.task)
-  })
-  
  app.get('/', (req, res) => {
   return res.status(200).send()
   });

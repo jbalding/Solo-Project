@@ -2,9 +2,9 @@ const User = require('../model/model');
 const UserController = {};
 
 UserController.createUser = (req, res, next) => {
- const { name } = req.body;
+ const { name, task } = req.body;
   console.log(req.body)
-      User.create({name})
+      User.create({name, task})
         .then( user => {
           res.locals.user = user;
           return next();
