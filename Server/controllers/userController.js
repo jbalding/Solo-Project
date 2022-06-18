@@ -1,4 +1,4 @@
-const User = require('./model');
+const User = require('../model/model');
 const UserController = {};
 
 UserController.createUser = (req, res, next) => {

@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
-const UserController = require('./userController')
+const apiRouter = require('./routes/api');
 
 
 const app = express();
@@ -21,21 +21,7 @@ mongoose.connect(MONGO_URI, {
 
     app.use(express.json())
 
-    app.post('/signup', UserController.createUser, (req, res) => {
-      return res.status(200).send(res.locals.user)
-    })
-
-    app.post('/login', UserController.loginUser, (req, res) => {
-      return res.status(200).redirect('/:name')
-    })
-
-    app.get('/:name', UserController.getUser, (req, res) => {
-      return res.status(200).send(res.locals.goals)
-    })
-    
-    app.get('/', (req, res) => {
-    return res.status(200).send()
-  });
+    app.use('/api', apiRouter);
 
 
 
