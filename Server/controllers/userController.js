@@ -13,19 +13,12 @@ UserController.createUser = (req, res, next) => {
       }
 
 
-UserController.loginUser = (req, res) => {
-  User.findOne({name: req.body})
-    .then(user => {
-      res.locals.user = user
-      return next()
-    })
-    .catch(err => next({log: 'catch in loginUser', message: {err: 'catch in loginUser'}}))
-}
-
-UserController.getUser = (req, res) => {
-  User.findOne({name: req.body.params}).exec()
+UserController.getUser = (req, res, next) => {
+  const { name } = req.params
+  console.log(req.params)
+  User.findOne({name})
   .then(user => {
-    res.locals.goals = user
+    res.locals.user = user
     return next()
   })
   .catch(err => next({log: 'err in getUser', message: {err: 'err in getUser'}}))

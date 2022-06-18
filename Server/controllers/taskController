@@ -1,0 +1,20 @@
+
+const User = require('../model/model');
+const taskController = {};
+
+taskController.addTask = (req, res, next) => {
+    const { name } = req.params.name
+    const { task } = req.body.task
+    User.findOneAndUpdate(
+        {name},
+        {task},
+        {new: true}
+    )
+    .then(data => {
+        res.locals.task = data
+        return next();
+    })
+    .catch(err => next({log: 'err in taskController.addTask', message: {err: 'err in taskController.addTask'}}))
+}
+
+module.exports = taskController;

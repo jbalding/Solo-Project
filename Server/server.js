@@ -1,7 +1,8 @@
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
-const UserController = require('./controllers/userController')
+const UserController = require('./controllers/userController');
+const taskController = require('./controllers/taskController');
 
 
 
@@ -27,12 +28,12 @@ mongoose.connect(MONGO_URI, {
     return res.status(200).send(res.locals.user)
   })
   
- app.post('/login', UserController.loginUser, (req, res) => {
-    return res.status(200).redirect('/:name')
-  })
-  
  app.get('/:name', UserController.getUser, (req, res) => {
-    return res.status(200).send(res.locals.goals)
+    return res.status(200).send(res.locals.user)
+  });
+
+  app.patch('/:name/tasks', taskController.addTask, (req, res) => {
+    return res.status(200).send(res.locals.task)
   })
   
  app.get('/', (req, res) => {
