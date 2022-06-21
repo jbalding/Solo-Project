@@ -32,6 +32,10 @@ mongoose.connect(MONGO_URI, {
     return res.status(200).send(res.locals.task)
   })
 
+  app.delete('/:name', taskController.deleteTask, (req, res) => {
+    return res.status(200).send(res.locals.task)
+  })
+
  app.get('/:name', UserController.getUser, (req, res) => {
     return res.status(200).send(res.locals.user)
   });
