@@ -21,7 +21,8 @@ mongoose.connect(MONGO_URI, {
     .then(() => console.log('Connected to Mongo DB.Test'))
     .catch(err => console.log(err));
 
-  app.use(express.json())
+  app.use(express.json());
+  app.use(express.static(path.resolve(__dirname, '../client')));
 
   
   app.post('/signup', UserController.createUser, (req, res) => {
@@ -40,9 +41,6 @@ mongoose.connect(MONGO_URI, {
     return res.status(200).send(res.locals.user)
   });
 
- app.get('/', (req, res) => {
-  return res.status(200).send()
-  });
 
 
   app.use((err, req, res, next) => {

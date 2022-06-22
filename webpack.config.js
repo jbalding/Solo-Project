@@ -8,21 +8,25 @@ module.exports = {
     // mode: development or production
     mode: 'development',
     //entry: tells webpack where our top most level of front is so that we can start compiling
-    entry: path.resolve(__dirname,'client/index.js'),
+    entry: [
+        './client/index.js'
+    ],
   
     //output tells webpack where to output our compiled files
     output: {
         filename: 'bundle.js',
+        publicPath: '/',
         path: path.resolve(__dirname, 'build')
     },
+    devtool: 'eval-source-map',
     module: {
         rules: [
             {
-                test: /|.jsx?/,
+                test: /\.jsx?/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ['@babel/env', '@babel/react']
+                    presets: ['@babel/preset-env', ['@babel/preset-react', {"runtime": "automatic"}]]
                 }
             },
             {
@@ -32,20 +36,35 @@ module.exports = {
         ]
     },
 
-    // plugins: [
-    //     new HtmlWebpackPlugin({
-    //         title: 'Development',
-    //         template: 'index.html'
-    //     })
-    // ],
+    resolve: {
+        extensions: ['.js', '.jsx'],
+    },
 
-    // devServer: {
-    //     static: {
-    //         publicPath: '/build',
-    //         directory: path.resolve(__dirname, 'build')
-    //     },
-    //     proxy: {
-    //         '/api': 'http://localhost:3000'
-    //     }
-    // }
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './index.html')
+        })
+    ],
+
+    devServer: {
+        host: 'localhost',
+        port: 8080,
+        hot: true,
+        historyApiFallback: true,
+        static: {
+            publicPath: '/',
+            directory: path.resolve(__dirname, 'build')
+        },
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        proxy: {
+            '/api/**': {
+                target: 'http://localhost:3000',
+                secure: false,
+            },
+            '/assest/**': {
+                target: 'http://localhost:3000/',
+                secure: false,
+            }
+        }
+    }
 }
