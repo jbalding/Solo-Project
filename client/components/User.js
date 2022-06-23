@@ -21,7 +21,7 @@ componentDidMount(){
                 tasks: result,
             });
         })
-        .then(console.log(this.props.name))
+        .then(console.log(this.state.tasks))
         .catch(error => console.log(error))
 }
 
