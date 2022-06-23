@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
 import login from './login.js'
 import Task from './task.js'
 
@@ -8,6 +9,7 @@ class User extends Component {
         super(props);
         this.state = {
             user: null,
+            redirect: null
         }
     }
    
@@ -18,7 +20,7 @@ componentDidMount(){
     .then(
         (result) => {
             this.setState({
-                user: result,
+                user: result, redirect: `/${this.props.name}`
             });
         })
         .catch(error => console.log(error))
@@ -33,10 +35,10 @@ render(){
     }
     }
     return (
-       <div id="task">
-        <h1>Tasks</h1>
-        {tasks}
-       </div>
+        <div id="task">
+            <h1>Tasks</h1>
+            {tasks}
+        </div>
     )
   } 
 }
