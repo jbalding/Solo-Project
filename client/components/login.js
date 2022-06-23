@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Route, Routes, BrowserRouter } from 'react-router-dom'
 import User from './User.js'
 
 class Login extends Component {
@@ -7,7 +7,7 @@ class Login extends Component {
         super(props)
         this.state = {
             isSubmitted: false,
-            name: "",
+            name: ""
         };
     }
 
@@ -24,7 +24,7 @@ class Login extends Component {
                 <label> Username: </label>
                 <input type="text" id="name" name="name"></input>
                 <label> Password: </label>
-                <input type="text" id="password" name="password"></input>
+                <input type="password" id="password" name="password"></input>
                 <input type="submit" value="Login"></input>
             </form>
             {this.state.isSubmitted && <User name={this.state.name}/>}

@@ -5,7 +5,10 @@ import User from './User.js'
 class Task extends Component {
     render(){
         return (
-            <div >{this.props.tasks[this.props.id]}</div>
+            <div >
+                <input type="checkbox"/>
+                {this.props.tasks[this.props.id]}
+            </div>
         )
     }
 }

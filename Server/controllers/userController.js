@@ -15,7 +15,7 @@ UserController.createUser = (req, res, next) => {
 
 UserController.getUser = (req, res, next) => {
   const { name } = req.params
-  console.log(req.params)
+  console.log(req.query)
   User.findOne({name})
   .then(user => {
     res.locals.user = user.task

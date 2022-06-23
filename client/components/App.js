@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, BrowserRouter, Routes } from 'react-router-dom';
 import Login from './login'
 
 
@@ -11,7 +11,7 @@ class App extends Component {
     render(){
         return (
             <div className="LoginPage">
-                <Login/>
+                < Login />
             </div>  
         )
     }
