@@ -18,7 +18,8 @@ UserController.getUser = (req, res, next) => {
   console.log(req.params)
   User.findOne({name})
   .then(user => {
-    res.locals.user = user
+    res.locals.user = user.task
+    console.log(res.locals.user)
     return next()
   })
   .catch(err => next({log: 'err in getUser', message: {err: 'err in getUser'}}))

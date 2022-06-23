@@ -7,7 +7,7 @@ class User extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tasks: [],
+            user: null,
         }
     }
    
@@ -18,20 +18,23 @@ componentDidMount(){
     .then(
         (result) => {
             this.setState({
-                tasks: result,
+                user: result,
             });
         })
-        .then(console.log(this.state.tasks))
         .catch(error => console.log(error))
 }
 
 render(){
     const tasks = [];
-    for (let i = 0; i < this.state.tasks.length; i++){
-        tasks.push(<Task id = {i} tasks = {this.state.tasks} onError={console.log(err)}/>)
+    if (this.state.user !== null){
+        for (let i = 0; i < this.state.user.length; i++){
+            tasks.push(<Task id = {i} tasks = {this.state.user}/>)
+
+    }
     }
     return (
        <div id="task">
+        <h1>Tasks</h1>
         {tasks}
        </div>
     )
