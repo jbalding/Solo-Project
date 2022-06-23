@@ -5,7 +5,7 @@ import User from './User.js'
 class Task extends Component {
     render(){
         return (
-            <div className='task'></div>
+            <div >{this.props.tasks[this.props.id]}</div>
         )
     }
 }
