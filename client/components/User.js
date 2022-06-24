@@ -9,20 +9,23 @@ class User extends Component {
         super(props);
         this.state = {
             user: null,
-            redirect: null
         }
     }
-    
-componentDidMount(){
+
+getData(){
     fetch('http://localhost:3000/' + `${this.props.name}`)
     .then(res => res.json())
     .then(
         (result) => {
             this.setState({
-                user: result, redirect: `/${this.props.name}`
+                user: result
             });
         })
         .catch(error => console.log(error))
+}
+    
+componentDidMount(){
+ this.getData()
 }
 
 onSubmit(e){
@@ -35,9 +38,13 @@ onSubmit(e){
         body: JSON.stringify(body)
       })
     .then(resp => resp.json())
-    .then(data => {
-      console.log(data);
-    }).then()
+    .then(
+        (result) => {
+        this.setState({
+            user: result
+        });
+    })
+    .catch(error => console.log(error))
 }
 
 render(){
