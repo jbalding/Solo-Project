@@ -26,18 +26,20 @@ componentDidMount(){
         .catch(error => console.log(error))
 }
 
+
 render(){
     const tasks = [];
     if (this.state.user !== null){
         for (let i = 0; i < this.state.user.length; i++){
             tasks.push(<Task id = {i} tasks = {this.state.user}/>)
-
     }
     }
     return (
         <div id="task">
             <h1>Tasks</h1>
             {tasks}
+            <label>Add Task: </label>
+            <input id="addTask"></input>
         </div>
     )
   } 

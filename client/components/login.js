@@ -14,13 +14,14 @@ class Login extends Component {
     onSubmit(e) {
         e.preventDefault()
         this.setState({isSubmitted: true, name: e.target.elements.name.value});
+        e.target.remove()
     }
-  
+
 
     render() {
         return (
             <div>
-             <form onSubmit={this.onSubmit.bind(this)}>
+             <form className="LoginPage" onSubmit={this.onSubmit.bind(this)}>
                 <label> Username: </label>
                 <input type="text" id="name" name="name"></input>
                 <label> Password: </label>
