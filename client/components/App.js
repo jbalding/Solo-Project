@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
-import { Switch, Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Switch, Route, BrowserRouter, Routes, useParams, Outlet} from 'react-router-dom';
 import Login from './login'
+import User from './User'
 
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-    }
+function App () {
+ function params(){
+    let { name } = useParams()
+ }
 
-    render(){
         return (
             <div className="LoginPage">
-                < Login />
+                < Routes>
+                <Route path="/" element={<Login />}/>
+                    <Route path=':name' element={<User />}/>
+                </Routes>
+                <Outlet/>
             </div>  
+            
         )
-    }
 }
 
 

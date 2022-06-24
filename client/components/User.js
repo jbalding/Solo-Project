@@ -7,13 +7,14 @@ class User extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: null,
+            user: null
         }
     }
 
 getData(){
     fetch('http://localhost:3000/' + `${this.props.name}`)
     .then(res => res.json())
+    .then(result =>  console.log("result", result))
     .then(
         (result) => {
             this.setState({
@@ -24,7 +25,12 @@ getData(){
 }
     
 componentDidMount(){
- this.getData()
+    console.log("this.props.name", this.props.name)
+    if(this.props.name){
+        this.getData()
+    }
+        
+  
 }
 
 onSubmit(e){
@@ -47,6 +53,7 @@ onSubmit(e){
 }
 
 render(){
+    console.log(this.state)
     const tasks = [];
     if (this.state.user !== null){
         for (let i = 0; i < this.state.user.length; i++){
