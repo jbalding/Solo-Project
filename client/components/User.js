@@ -38,8 +38,11 @@ render(){
         <div id="task">
             <h1>Tasks</h1>
             {tasks}
-            <label>Add Task: </label>
-            <input id="addTask"></input>
+            <form className="addTask" onSubmit={this.onSubmit.bind(this)}>
+                <label> Add Task: </label>
+                <input type= "text" id="addingTask" name="addingTask"></input>
+                <input type="submit" value="submit"></input>
+            </form>
         </div>
     )
   } 
