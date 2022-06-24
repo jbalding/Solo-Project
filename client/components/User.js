@@ -38,7 +38,7 @@ render(){
         <div id="task">
             <h1>Tasks</h1>
             {tasks}
-            <form className="addTask" onSubmit={this.onSubmit.bind(this)}>
+            <form className="addTask">
                 <label> Add Task: </label>
                 <input type= "text" id="addingTask" name="addingTask"></input>
                 <input type="submit" value="submit"></input>
