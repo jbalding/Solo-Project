@@ -12,7 +12,6 @@ class User extends Component {
             redirect: null
         }
     }
-   
     
 componentDidMount(){
     fetch('http://localhost:3000/' + `${this.props.name}`)
