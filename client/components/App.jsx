@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter, Routes, useParams, Outlet} from 'react-router-dom';
 import Login from './login'
 import User from './User'
-
+import '../style.css'
 
 function App () {
  function params(){

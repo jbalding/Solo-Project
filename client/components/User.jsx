@@ -55,7 +55,6 @@ if (error) {
                     <div>
                         <input type="checkbox" />
                         {item}
-                        <button type="button">Delete</button>
                     </div>
                 ))}
             </div></><form className="addTask" onSubmit={onSubmit}>
