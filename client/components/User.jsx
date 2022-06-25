@@ -10,6 +10,7 @@ function User() {
     const params = useParams();
     const name = params.name;
 
+
 useEffect(() => {
     fetch(`http://localhost:3000/${params.name}`)
         .then(res => res.json())
@@ -31,15 +32,19 @@ if (error) {
     return <div>Loading...</div>;
 } else {
     return (
-        <div>
-             <ul>
-        {items.map(item => (
-          <li>
-            {item}
-          </li>
-        ))}
-      </ul>
-        </div>
+        <><><div>
+            <h2> Tasks </h2>
+        </div><div>
+                {items.map(item => (
+                    <div>
+                        <input type="checkbox" />
+                        {item}
+                    </div>
+                ))}
+            </div></><form className="addTask">
+                <label> Add Task: </label>                <input type="text" id="addingTask" name="addingTask"></input>
+                <input type="submit" value="submit"></input>
+            </form></>
     );
   }
 }
