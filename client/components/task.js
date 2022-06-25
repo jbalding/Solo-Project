@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import User from './User.js'
+import User from './User.jsx'
 
 
 class Task extends Component {

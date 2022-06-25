@@ -15,7 +15,6 @@ function App () {
                 <Route path="/" element={<Login />}/>
                     <Route path=':name' element={<User />}/>
                 </Routes>
-                <Outlet/>
             </div>  
             
         )

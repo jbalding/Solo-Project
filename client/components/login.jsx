@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Route, Routes, BrowserRouter, Navigate, useParams } from 'react-router-dom'
-import User from './User.js'
+import User from './User.jsx'
 
 class Login extends Component {
     constructor(props) {
