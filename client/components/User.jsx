@@ -23,7 +23,7 @@ let onSubmit = (e) => {
             .then(resp => resp.json())
             .then(result => {
                 setItems(result);
-            })
+            }).then(e.target.elements.addingTask.value="")
 }
 
 
@@ -55,6 +55,7 @@ if (error) {
                     <div>
                         <input type="checkbox" />
                         {item}
+                        <button type="button">Delete</button>
                     </div>
                 ))}
             </div></><form className="addTask" onSubmit={onSubmit}>
@@ -64,97 +65,6 @@ if (error) {
     );
   }
 }
-// class User extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             error: null,
-//             isLoaded: false,
-//             user: [],
-//             name: this.props.name,
-//         };
-//     }
-
-//     onSubmit(e)  {
-//         const body = {task: e.target.elements.addingTask.value}
-//         fetch('http://localhost:3000/' + `${this.props.name}`, {
-//             method: 'PATCH',
-//             headers: {
-//               'Content-Type': 'Application/JSON'
-//             },
-//             body: JSON.stringify(body)
-//           })
-//         .then(resp => resp.json())
-//         .then(result => {
-//             this.setState({user: result});
-//         })
-//         .catch(error => console.log(error))
-//     }
-    
-// componentDidMount(){
-//     if(this.props.name){
-//         fetch('http://localhost:3000/' + `${this.props.name}`)
-//         .then(res => res.json())
-//         .then(
-//             (result) => {
-//                 this.setState({
-//                     isLoaded: true,
-//                     user: result,
-//                 });
-//             },
-//             (error) => {
-//                 this.setState({
-//                     error,
-//                     isLoaded: true
-//                 });
-//             }
-//         )
-//     }
-// }
-
-// render() {
-//     const { error, isLoaded, user } = this.state;
-//     if (error) {
-//       return <div>Error: {error.message}</div>;
-//     } else if (!isLoaded) {
-//       return <div>Loading...</div>;
-//     } else {
-//       return (
-//         <ul>
-//           {user.map(user => (
-//             <li key={user.id}>
-//               {user}
-//             </li>
-//           ))}
-//         </ul>
-//       );
-//     }
-//   }
-// }
-
-// render(){
-//     console.log("this.props", this.props)
-//     console.log("this.state", this.state)
-//     const tasks = [];
-//     if (this.state.user != false){
-//         for (let i = 0; i < this.state.user.length; i++){
-//             tasks.push(<Task id = {i} tasks = {this.state.user}/>)
-//     }
-//     }
-//     return (
-       
-//         <div id="task">
-//             <h1>Tasks</h1>
-//             {tasks}
-//             <form className="addTask" onSubmit={this.onSubmit.bind(this)}>
-//                 <label> Add Task: </label>
-//                 <input type= "text" id="addingTask" name="addingTask"></input>
-//                 <input type="submit" value="submit"></input>
-//             </form>
-//         </div>
-//     )
-//   } 
-//}
 
 
 export default User;
