@@ -15,11 +15,11 @@ UserController.createUser = (req, res, next) => {
 
 UserController.getUser = (req, res, next) => {
   const { name } = req.params
-  console.log(req.query)
+  console.log("name in get user", name)
   User.findOne({name})
   .then(user => {
     res.locals.user = user.task
-    console.log(res.locals.user)
+    console.log("user",res.locals.user)
     return next()
   })
   .catch(err => next({log: 'err in getUser', message: {err: 'err in getUser'}}))

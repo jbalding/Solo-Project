@@ -1,24 +1,30 @@
 import React, { Component } from 'react'
-import { Link, Route, Routes, BrowserRouter } from 'react-router-dom'
-import User from './User.js'
+import { Link, Route, Routes, BrowserRouter, Navigate, useParams } from 'react-router-dom'
+import User from './User.jsx'
 
 class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
             isSubmitted: false,
-            name: ""
+            name: "",
+            redirect: null
         };
     }
 
     onSubmit(e) {
         e.preventDefault()
-        this.setState({isSubmitted: true, name: e.target.elements.name.value});
-        e.target.remove()
+        this.setState({isSubmitted: true, name: e.target.elements.name.value, redirect: `/${e.target.elements.name.value}`})
+        
     }
 
 
     render() {
+        if (this.state.redirect){
+            return(
+            <><User name={this.state.name} /><Navigate to={this.state.redirect} /></>
+            )
+        }
         return (
             <div>
              <form className="LoginPage" onSubmit={this.onSubmit.bind(this)}>
@@ -28,7 +34,6 @@ class Login extends Component {
                 <input type="password" id="password" name="password"></input>
                 <input type="submit" value="Login"></input>
             </form>
-            {this.state.isSubmitted && <User name={this.state.name}/>}
             </div>
         )
         }

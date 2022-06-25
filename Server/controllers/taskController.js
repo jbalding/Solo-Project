@@ -11,7 +11,7 @@ taskController.addTask = (req, res, next) => {
         {new: true}
     )
     .then(data => {
-        res.locals.task = data
+        res.locals.task = data.task
         return next();
     })
     .catch(err => next({log: 'err in taskController.addTask', message: {err: 'err in taskController.addTask'}}))
