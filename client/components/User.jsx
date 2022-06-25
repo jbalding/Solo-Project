@@ -10,6 +10,22 @@ function User() {
     const params = useParams();
     const name = params.name;
 
+let onSubmit = (e) => {
+    e.preventDefault()
+    const body = {task: e.target.elements.addingTask.value}
+            fetch(`http://localhost:3000/${params.name}`, {
+                method: 'PATCH',
+                headers: {
+                  'Content-Type': 'Application/JSON'
+                },
+                body: JSON.stringify(body)
+              })
+            .then(resp => resp.json())
+            .then(result => {
+                setItems(result);
+            })
+}
+
 
 useEffect(() => {
     fetch(`http://localhost:3000/${params.name}`)
@@ -41,7 +57,7 @@ if (error) {
                         {item}
                     </div>
                 ))}
-            </div></><form className="addTask">
+            </div></><form className="addTask" onSubmit={onSubmit}>
                 <label> Add Task: </label>                <input type="text" id="addingTask" name="addingTask"></input>
                 <input type="submit" value="submit"></input>
             </form></>
